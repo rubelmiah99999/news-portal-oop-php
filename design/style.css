@@ -1,0 +1,41 @@
+.jumbotron-header
+{
+    padding-bottom: 0.7em;
+    padding-top: 0.7em;
+}
+.green-link
+{
+    color: darkgreen;
+}
+.white-font
+{
+    color: whitesmoke;
+}
+html, body
+{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+.wrapper-container
+{
+    height: 70%;
+}
+/*.main
+{
+    overflow-y: auto;
+}*/
+.center-div
+{
+    margin: 0 auto;
+    width: 20%;
+}
+/*flip navbar brand*/
+.flip-brand
+{
+    transform: scale(-1, 1);
+}
+/*hide scrollbar*/
+::-webkit-scrollbar {
+    display: none;
+}
