@@ -1,2 +1,3 @@
 # news-portal-oop-php
-News porta
+News portal\
+OOP PHP, HTML, CSS, JavaScript, Bootstrap
