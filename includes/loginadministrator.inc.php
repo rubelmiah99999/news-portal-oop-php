@@ -11,12 +11,12 @@ function checkPassword($password, $db_password)
 }
 
 if(isset($_POST['login-submit'])) {
-    require_once __DIR__.'/../database/dbFunctions.php';
+    require_once __DIR__.'/../database/dbhandler.php';
 	
 	$mailuid = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mailuid']);
     $password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
     
-    $dbFunctions = new DatabaseFunctions();
+    $db = Database::getInstance();
 	
 	if(empty($mailuid) || empty($password))  {
 		header("Location: ../public/loginadministrator.php?error=emptyfields&mailuid=".$mailuid."&mail=".$email);
@@ -24,7 +24,7 @@ if(isset($_POST['login-submit'])) {
 	}
 	else {
 		$sql = "SELECT * FROM administrator WHERE username = ? OR email = ? ;";
-        $result = $dbFunctions->stmtWithTwoParam($sql, $mailuid, $mailuid);
+        $result = $db->checkLogIn($sql, $mailuid, $mailuid);
         if(!empty($result)) {
             foreach($result as $key => $value) {
                     /*I used SHA-256 for password encryption in MySQL for administrators*/ 
