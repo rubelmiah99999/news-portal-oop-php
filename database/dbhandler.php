@@ -160,7 +160,7 @@ class Database {
         $stmt = $this->con->stmt_init();
 
         if(!$stmt->prepare($sql)) {
-            exit();
+            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
         } else {
             $stmt->bind_param("ss", $param1, $param2);
             $stmt->execute();
