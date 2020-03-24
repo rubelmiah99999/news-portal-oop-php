@@ -5,12 +5,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 
 if(isset($_POST['login-submit'])) {
-    require_once __DIR__.'/../database/dbFunctions.php';
+    require_once __DIR__.'/../database/dbhandler.php';
 	
 	$mailuid = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mailuid']);
     $password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
     
-    $dbFunctions = new DatabaseFunctions();
+    $db = Database::getInstance();
 	
 	If(empty($mailuid) || empty($password))  {
 		header("Location: ../public/loginuser.php?error=emptyfields&mailuid=".$mailuid."&mail=".$email);
@@ -18,7 +18,7 @@ if(isset($_POST['login-submit'])) {
 	}
 	else {
 		$sql = "SELECT * FROM user WHERE username = ? OR email = ? ;";
-		$result = $dbFunctions->stmtWithTwoParam($sql, $mailuid, $mailuid);
+		$result = $db->checkLogIn($sql, $mailuid, $mailuid);
 			if(!empty($result)) {
                 foreach($result as $key => $value) {
                     $pwdCheck = password_verify($password, $value['password']);
@@ -44,4 +44,3 @@ if(isset($_POST['login-submit'])) {
 else {
 	header("Location: ../public/loginuser.php");
 	exit();
-}
