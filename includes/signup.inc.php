@@ -4,14 +4,14 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if(isset($_POST['signup-submit'])) {
-    require_once __DIR__.'/../database/dbFunctions.php';
+    require_once __DIR__.'/../database/dbhandler.php';
 	
 	$username = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['uid']);
 	$email = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mail']);
 	$password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
     $passwordRepeat = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd-repeat']);
     
-    $dbFunctions = new DatabaseFunctions();
+    $db = Database::getInstance();
 	
 	/*error handlers */
 
@@ -40,16 +40,20 @@ if(isset($_POST['signup-submit'])) {
 	}
 	else {
 		/* does the chosen username already exist*/
-		$sql = "SELECT username FROM user WHERE username = ? ;";
-		$resultCheck = $dbFunctions->anyMatchingData($sql, $username);
+		//$sql = "SELECT username FROM user WHERE username = ? ;";
+		$table = 'user';
+		$params = array($username);
+		$resultCheck = $db->exists($table, $username, $params);
 		if($resultCheck > 0) {
 			header("Location: ../public/signup.php?error=usertaken&mail=".$email);
 			exit();
 		} else {
             /* insert */
             $sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?) ;";
-            $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-            $dbFunctions->stmtWithThreeParam($sql, $username, $email, $hashedPwd);
+			$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+			$table = 'user';
+			$parameters = array($username, $email, $hashedPwd);
+            $db->insertData($table, $parameters);
             header("Location: ../public/loginuser.php?sighup=success");
             exit();
 		}
