@@ -1,6 +1,5 @@
 <?php
    include_once __DIR__.'/../database/news.php';
-   include_once __DIR__.'/../database/comments.php';
 ?>
 
 <!DOCTYPE html>
@@ -50,28 +49,30 @@
                         $article = $newss->getArticle($idArticle);
 
                         if(!empty($article)) {
+                            foreach($article as $key => $value) {
 
-                            echo '<div class="jumbotron jumbotron-fluid mt-3">';
-                                echo '<div class="container">';
-                                    echo '<h1 class=display-4">'.stripslashes($article["title"]).'</h1>';
-                                    echo '<p class="lead">'.stripslashes($article["short_description"]).'</p>';
+                                echo '<div class="jumbotron jumbotron-fluid mt-3">';
+                                    echo '<div class="container">';
+                                        echo '<h1 class=display-4">'.stripslashes($value["title"]).'</h1>';
+                                        echo '<p class="lead">'.stripslashes($value["short_description"]).'</p>';
+                                    echo '</div>';
                                 echo '</div>';
-                            echo '</div>';
 
-                            echo '<div class="image-read-news">';
-                            echo '<img src="data:image/jpeg;base64,'.base64_encode( $article['picture'] ).'"/>';
-                            echo '<a class="d-block green-link" href="'.$article["picture_source"].'" target="_blank">'.'Image source</a>';
-                            echo '</div>';
+                                echo '<div class="image-read-news">';
+                                echo '<img src="data:image/jpeg;base64,'.base64_encode( $value['picture'] ).'"/>';
+                                echo '<a class="d-block green-link" href="'.$value["picture_source"].'" target="_blank">'.'Image source</a>';
+                                echo '</div>';
 
-                            echo '<hr>';
-
-                            echo '<div class="article-content">';
-                            echo stripslashes($article['content']);
                                 echo '<hr>';
-                                echo '<p class="font-weight-bold text-right">Written by '.stripslashes($newss->getAuthor($article["administrator_id"])).'</p>';
-                                echo '<p class="font-weight-bold text-right">Published on '.$article["date_added"].', category: '.$article["category"].'</p>';
-                            echo '</div>';
 
+                                echo '<div class="article-content">';
+                                echo stripslashes($value['content']);
+                                    echo '<hr>';
+                                    echo '<p class="font-weight-bold text-right">Written by '.($newss->getAuthor($value["administrator_id"])).'</p>';
+                                    echo '<p class="font-weight-bold text-right">Published on '.$value["date_added"].', category: '.$value["category"].'</p>';
+                                echo '</div>';
+
+                            }
                         } else {
                             echo '<div class="jumbotron jumbotron-fluid mt-3">';
                                 echo '<div class="container">';
@@ -79,6 +80,7 @@
                                 echo '</div>';
                             echo '</div>';
                         }
+                        
 
                     ?>
                 </div>
