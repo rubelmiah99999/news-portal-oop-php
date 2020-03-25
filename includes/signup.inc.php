@@ -51,9 +51,7 @@ if(isset($_POST['signup-submit'])) {
             /* insert */
             $sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?) ;";
 			$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-			$table = 'user';
-			$parameters = array($username, $email, $hashedPwd);
-            $db->insertData($table, $parameters);
+            $db->insertData($sql,$username, $email, $hashedPwd);
             header("Location: ../public/loginuser.php?sighup=success");
             exit();
 		}
