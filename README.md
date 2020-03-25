@@ -18,11 +18,11 @@ OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer
 * Pagination system
 * Displaying a chosen article (with images and their sources)
 * Cookies
+* Users, administrators and anonymous people can add comments to articles (I need to implement AJAX functionality still)
 
 
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
-* Users, administrators and anonymous people can add comments to articles
 * Users can delete their own comments
 * Administrators can delete any comment
 * Administrators can add a new article (as writers)
