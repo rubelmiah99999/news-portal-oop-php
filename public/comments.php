@@ -35,7 +35,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     //button for deleting comments
                     if(isset($_SESSION['administratorUsername']) || 
                             (isset($_SESSION['userUsername']) && ($_SESSION['userUsername'] == $comment['username']))) {
-                        echo '<a href="#" class="btn btn-dark">Delete</a>';
+                                echo '<form action="../includes/comments.inc.php" method="post">';
+                                echo '<button type="submit" name="deletecom" class="btn btn-dark">Delete</a>';
+                                echo '<input type="hidden" name="comId" value="'.$comment['id'].'">';
+                                echo '</form>';
                     }
 
                 echo '</div>';
