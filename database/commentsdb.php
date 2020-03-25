@@ -12,7 +12,7 @@ class Comments {
 
     public function fetchComments($newsId) {
         $db = $this->connect();
-        $sql = "SELECT username, content FROM comments WHERE news_id = ? ;";
+        $sql = "SELECT id, username, content FROM comments WHERE news_id = ? ;";
         $result = $db->getWithParameter($sql, $newsId);
         return $result;
         exit();
