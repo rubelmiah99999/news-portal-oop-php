@@ -27,8 +27,8 @@ if(isset($_POST['login-submit'])) {
                         exit();
                     }
                     else if($pwdCheck == true) {
-                        $_SESSION['userId'] = $row['id'];
-                        $_SESSION['userUsername'] = $row['username'];
+                        $_SESSION['userId'] = $value['id'];
+                        $_SESSION['userUsername'] = $value['username'];
                         
                         header("Location: ../public/index.php?login=succes");
                         exit();
@@ -44,3 +44,4 @@ if(isset($_POST['login-submit'])) {
 else {
 	header("Location: ../public/loginuser.php");
 	exit();
+}
