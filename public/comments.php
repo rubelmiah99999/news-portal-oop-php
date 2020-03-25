@@ -31,6 +31,13 @@ if (session_status() == PHP_SESSION_NONE) {
                 echo '<div class="card-body">';
                     echo '<h6 class="card-header">'.stripslashes($comment['username']).'</h6>';
                     echo '<p class="card-text">'.stripslashes($comment['content']).'</p>';
+
+                    //button for deleting comments
+                    if(isset($_SESSION['administratorUsername']) || 
+                            (isset($_SESSION['userUsername']) && ($_SESSION['userUsername'] == $comment['username']))) {
+                        echo '<a href="#" class="btn btn-dark">Delete</a>';
+                    }
+
                 echo '</div>';
             echo '</div>';
         }
