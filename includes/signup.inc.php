@@ -40,10 +40,8 @@ if(isset($_POST['signup-submit'])) {
 	}
 	else {
 		/* does the chosen username already exist*/
-		//$sql = "SELECT username FROM user WHERE username = ? ;";
-		$table = 'user';
-		$params = array($username);
-		$resultCheck = $db->exists($table, $username, $params);
+		$sql = "SELECT username FROM user WHERE username = ? ;";
+		$resultCheck = $db->numRows($sql);
 		if($resultCheck > 0) {
 			header("Location: ../public/signup.php?error=usertaken&mail=".$email);
 			exit();
