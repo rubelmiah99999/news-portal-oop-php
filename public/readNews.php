@@ -85,7 +85,11 @@
                     ?>
                 </div>
 
-                
+                <!--comments-->
+                        <?php
+                            include 'comments.php';
+                        ?>
+                <!--end of comments-->
 
             </main>
             <!--end of main-->
