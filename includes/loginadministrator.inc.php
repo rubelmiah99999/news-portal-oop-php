@@ -33,8 +33,8 @@ if(isset($_POST['login-submit'])) {
                         header("Location: ../public/loginadministrator.php?error=wrongpwd");
                         exit();
                     } else if($pwdCheck == true) {
-                        $_SESSION['administratorId'] = $row['id'];
-                        $_SESSION['administratorUsername'] = $row['username'];
+                        $_SESSION['administratorId'] = $value['id'];
+                        $_SESSION['administratorUsername'] = $value['username'];
                         
                         header("Location: ../public/index.php?login=succes");
                         exit();
