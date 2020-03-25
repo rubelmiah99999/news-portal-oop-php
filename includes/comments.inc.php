@@ -4,11 +4,12 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 
+require_once __DIR__.'/../database/dbhandler.php';
+$idArticle = $_SESSION['idArticle'];
+$db = Database::getInstance();
+
 //did we get here trough comment button
 if(isset($_POST['comment'])) {
-    require_once __DIR__.'/../database/dbhandler.php';
-    $idArticle = $_SESSION['idArticle'];
-    $db = Database::getInstance();
 
     $content = str_replace(array(':', '-', '/', '*', '<', '<'), '',  $_POST['comment']);
 
@@ -37,6 +38,20 @@ if(isset($_POST['comment'])) {
     }
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+
+} else if(isset($_POST['deletecom'])) {
+    //deleting comments
+    $comId = str_replace(array(':', '-', '/', '*', '<', '<'), '',  $_POST['comId']);
+
+    if(empty($comId)) {
+        header("Location: ../public/readNews.php?error=emptycomment&id=".$idArticle);
+        exit();
+    } else {
+        $sql="DELETE FROM comments WHERE id = ? ;";
+        $db->deleteData($sql, $comId);
+        header("Location: ../public/readNews.php?id=".$idArticle."&deletecomment=success");
+		exit();
+    }
 
 } else {
     header("Location: ../public/readNews.php?id=".$idArticle);
