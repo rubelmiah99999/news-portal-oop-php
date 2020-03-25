@@ -66,7 +66,7 @@ class Database {
         $sql = "SELECT $checkVal FROM $table WHERE $check";
         $stmt = $this->con->stmt_init();
         if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
+            throw new \Exception( 'Prepare failed' );
         } else {
 
             call_user_func_array( 
@@ -89,7 +89,7 @@ class Database {
     public function getWithoutParameters($sql) {
         $stmt = $this->con->stmt_init();
         if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
+            throw new \Exception( 'Prepare failed' );
         } else {
             $stmt->execute();
         }
@@ -106,7 +106,7 @@ class Database {
     public function getWithParameter($sql, $param) {
         $stmt = $this->con->stmt_init();
         if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
+            throw new \Exception( 'Prepare failed' );
         } else {
             $stmt->bind_param("s", $param);
             $stmt->execute();
@@ -121,38 +121,13 @@ class Database {
     }
 
     //insert data into database
-    public function insertData($table, $parameters = array()) {
-        if(empty($table) || empty($parameters)) {
-            return false;
-        }
-
-        $sql = "INSERT INTO". $table;
-        $fields = array();
-        $values = array();
-        $placeh = '';
-        foreach($parameters as $field => $value) {
-            $fields[] = $field;
-            $values[] = '?';
-        }
-        $fields = ' (' . implode(', ', $fields) . ')';
-        $values = '('. implode(', ', $values) .')';
-        $sql .= $fields .' VALUES '. $values;
-
+    public function insertData($sql, $param1, $param2, $param3) {
         $stmt = $this->con->stmt_init();
         if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
+            throw new \Exception( 'Prepare failed' );
         } else {
-            
-            call_user_func_array( 
-                array( $stmt, 'bind_param' ), 
-                array_merge( 
-                    array( T_STRING ), 
-                    array_map( function( &$item ) { return $item; }, $parameters ) 
-                ) 
-            );
-
+            $stmt->bind_param("sss", $param1, $param2, $param3);
             $stmt->execute();
-
         }
     }
 
@@ -160,7 +135,7 @@ class Database {
         $stmt = $this->con->stmt_init();
 
         if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed: ' . $sql . PHP_EOL . $this->mysqli->error );
+            throw new \Exception( 'Prepare failed' );
         } else {
             $stmt->bind_param("ss", $param1, $param2);
             $stmt->execute();
@@ -173,7 +148,6 @@ class Database {
             return null;
         }
     }
-
-    
+ 
 
 }
