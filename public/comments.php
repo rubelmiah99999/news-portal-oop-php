@@ -36,7 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     if(isset($_SESSION['administratorUsername']) || 
                             (isset($_SESSION['userUsername']) && ($_SESSION['userUsername'] == $comment['username']))) {
                                 echo '<form action="../includes/comments.inc.php" method="post">';
-                                echo '<button type="submit" name="deletecom" class="btn btn-dark">Delete</a>';
+                                echo '<button type="submit" name="deletecom" class="btn btn-dark">Delete</button>';
                                 echo '<input type="hidden" name="comId" value="'.$comment['id'].'">';
                                 echo '</form>';
                     }
