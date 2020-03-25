@@ -29,10 +29,8 @@ if(isset($_POST['comment'])) {
         }
 
         //inserting into database
-        //$sql = "INSERT INTO comments (username, content, news_id) VALUES (?, ?, ?) ;";
-        $table = 'comments';
-        $parameters = array($username, $content, $idArticle);
-        $db->insertData($table, $parameters);
+        $sql = "INSERT INTO comments (username, content, news_id) VALUES (?, ?, ?) ;";
+        $db->insertData($sql, $username, $content, $idArticle);
         header("Location: ../public/readNews.php?id=".$idArticle."&comments=success");
 		exit();
         
