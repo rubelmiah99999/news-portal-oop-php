@@ -131,6 +131,16 @@ class Database {
         }
     }
 
+    public function deleteData($sql, $param) {
+        $stmt = $this->con->stmt_init();
+        if(!$stmt->prepare($sql)) {
+            throw new \Exception( 'Prepare failed' );
+        } else {
+            $stmt->bind_param("s", $param);
+            $stmt->execute();
+        }
+    }
+
     public function checkLogIn($sql, $param1, $param2) {
         $stmt = $this->con->stmt_init();
 
