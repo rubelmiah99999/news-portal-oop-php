@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 //did we get here trough comment button
 if(isset($_POST['comment'])) {
     require_once __DIR__.'/../database/dbhandler.php';
-    $idArticle = $_POST['idArticle'];
+    $idArticle = $_SESSION['idArticle'];
     $db = Database::getInstance();
 
     $content = str_replace(array(':', '-', '/', '*', '<', '<'), '',  $_POST['comment']);
