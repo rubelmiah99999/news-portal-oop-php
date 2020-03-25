@@ -46,7 +46,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             echo '<li class="nav-item active white-font">'.$userUsername.'</li>';
                         } else if(isset($_SESSION['administratorUsername'])) {
                             $administratorUsername = $_SESSION['administratorUsername'];
-                            echo '<li class="nav-item active white-font">'.$administratorUsername.'</li>';
+                            echo '<li class="nav-item active btn btn-success"><a href="adminManageArticles.php">Manage</a></li>';
+                            echo '<li class="nav-item active white-font my-auto mx-1">'.$administratorUsername.'</li>';
                         } else {
                             echo '<li class="nav-item active white-font"></li>';
                         }
