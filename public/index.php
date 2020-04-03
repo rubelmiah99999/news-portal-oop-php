@@ -82,7 +82,7 @@
                                 stripslashes($article['title']).'">'.stripslashes($article['title']).'</a></h2>';
                                 echo '<p class="card-text mt-1">'.stripslashes($article['short_description']).'</p>';
                                 echo '<span>published on '.$article['date_added'].', by '.
-                                ($newss->getAuthor($article['administrator_id'])).'</span>';
+                                stripslashes($article['author']).'</span>';
                                 echo '</div>';
                             echo '</div>';
                         }
