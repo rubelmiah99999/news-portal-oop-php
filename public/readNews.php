@@ -47,6 +47,7 @@
                         $newss = new News();
                         $idArticle = $_GET['id'];
                         $article = $newss->getArticle($idArticle);
+                        $_SESSION['idArticle'] = $idArticle;
 
                         if(!empty($article)) {
                             foreach($article as $key => $value) {
@@ -68,7 +69,7 @@
                                 echo '<div class="article-content">';
                                 echo stripslashes($value['content']);
                                     echo '<hr>';
-                                    echo '<p class="font-weight-bold text-right">Written by '.($newss->getAuthor($value["administrator_id"])).'</p>';
+                                    echo '<p class="font-weight-bold text-right">Written by '.$value["author"].'</p>';
                                     echo '<p class="font-weight-bold text-right">Published on '.$value["date_added"].', category: '.$value["category"].'</p>';
                                 echo '</div>';
 
