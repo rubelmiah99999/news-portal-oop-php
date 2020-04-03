@@ -3,7 +3,7 @@
 define('host', 'localhost');
 define('user', 'root');
 define('pass', '');
-define('database', 'newsportal');
+define('database', 'newsportall');
 define('port', '3308');
 
 class Database {
