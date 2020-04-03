@@ -98,7 +98,7 @@
                                             echo $article['title'];
                                         echo '</td>';
                                         echo '<td>';
-                                            echo $newss->getAuthor($article['administrator_id']);
+                                            echo $article['author'];
                                         echo '</td>';
                                         echo '<td>';
                                             echo $article['date_added'];
