@@ -12,7 +12,7 @@ class News {
 
     public function fetchNews($offset, $total_records_per_page) {
         $db = $this->connect();
-        $sql = "SELECT id, title, administrator_id, date_added, short_description, picture 
+        $sql = "SELECT id, title, author, date_added, short_description, picture 
                 FROM news ORDER BY date_added DESC LIMIT $offset, $total_records_per_page ;";
         $result = $db->getWithoutParameters($sql);
         return $result;
@@ -21,21 +21,10 @@ class News {
 
     public function getArticle($id) {
         $db = $this->connect();
-        $sql = "SELECT title, category, administrator_id, date_added, short_description, 
+        $sql = "SELECT title, category, author, date_added, short_description, 
                 content, picture, picture_source FROM news WHERE id = ? ;";
         $result = $db->getWithParameter($sql, $id);
         return $result;
-        exit();
-    }
-
-    public function getAuthor($id) {
-        $db = $this->connect();
-        $sql = "SELECT name, surname FROM administrator WHERE id = ? ;";
-        $result = $db->getWithParameter($sql, $id);
-        foreach($result as $key => $author) {
-            $result2 = ''.$author['name'].' '.$author['surname'];
-        }
-        return $result2;
         exit();
     }
 
@@ -49,7 +38,7 @@ class News {
 
     public function getNewsByCategory($category) {
         $db = $this->connect();
-        $sql = "SELECT id, title, date_added, short_description, administrator_id, picture 
+        $sql = "SELECT id, title, date_added, short_description, author, picture 
                 FROM news WHERE category = ? ;";
         $result = $db->getWithParameter($sql, $category);
         return $result;
