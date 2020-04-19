@@ -156,7 +156,7 @@
                     </form>
 
                     <hr>
-                    <a type="button" href="#" name="addar" class="btn btn-dark btn-lg float-right">
+                    <a type="button" href="adminAddArticles.php" name="addar" class="btn btn-dark btn-lg float-right">
                         Add article</a>
                 </div>
 
