@@ -26,5 +26,5 @@ OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer
 
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
-* Administrators can add a new article
+* Administrators can add a new article (image upload and some work on security left)
 
