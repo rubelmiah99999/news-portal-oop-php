@@ -27,7 +27,7 @@ if(isset($_POST['add-article'])) {
     //$fInfo = new finfo(FILEINFO_MIME);
     //$mimeType = $fInfo->file($imagename);
 
-    $date = date('m/d/Y h:i:s a', time());
+    $date = date('Y-m-d H:i:s');
 
     $db = Database::getInstance();
 
