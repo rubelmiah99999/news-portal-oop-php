@@ -1,4 +1,9 @@
 <?php
+
+/*
+Script for administrator log in
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -13,8 +18,8 @@ function checkPassword($password, $db_password)
 if(isset($_POST['login-submit'])) {
     require_once __DIR__.'/../database/dbhandler.php';
 	
-	$mailuid = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mailuid']);
-    $password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
+	$mailuid = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['mailuid']);
+    $password = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['pwd']);
     
     $db = Database::getInstance();
 	
