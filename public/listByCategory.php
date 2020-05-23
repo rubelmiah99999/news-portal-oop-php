@@ -65,7 +65,7 @@
                     $second_last = $total_no_of_pages - 1; //total pages minus 1
 
                         $category = $_GET['category'];
-
+                        //list news by category
                         if(!empty($category)) {
                             $articlesByCategory = $newss->getNewsByCategory($category);
 
@@ -82,7 +82,7 @@
                             }
 
                         } else {
-                            echo '<p>Wrong article</p>';
+                            echo '<p>No article here</p>';
                         }
 
                     ?>
