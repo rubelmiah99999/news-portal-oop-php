@@ -1,5 +1,10 @@
 <?php
 
+/*
+Script that adds articles to the database once administrator choses to do so,
+and if everything is proper
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -15,17 +20,13 @@ if(isset($_POST['add-article'])) {
     $imgsource = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['imgsource']);
 
     if(count($_FILES) > 0) {
-        if(is_uploaded_file($_FILES['chooseimg']['tmpname'])) {
-            $image = addslashes(file_get_contents($_FILES['chooseimg']['tmpname']));
+        if(is_uploaded_file($_FILES['chooseimg']['tmp_name'])) {
+            $image = addslashes(file_get_contents($_FILES['chooseimg']['tmp_name']));
         }
     } else {
-        $imagename = null;
+        $image = null;
         $imgsource = null;
     }
-    //$imagename = $_FILES['chooseimg'];
-    //$image = file_get_contents($imagename);
-    //$fInfo = new finfo(FILEINFO_MIME);
-    //$mimeType = $fInfo->file($imagename);
 
     $date = date('Y-m-d H:i:s');
 
@@ -34,20 +35,15 @@ if(isset($_POST['add-article'])) {
     if(empty($title) || empty($author) || empty($category)  || empty($content)  || empty($shortDesc)) {
         header("Location: ../public/adminAddArticles.php?error=emptyfields");
         exit();
-    }   else if(filesize($imagename) > 16777215) {
-        header("Location: ../public/adminAddArticles.php?error=imagesize");
-        exit();
-    } /*else if($mimeType !== 'image/jpeg' || $mimeType !== 'image/pjpeg' || $mimeType !== 'image/png' || $mimeType !== 'image/gif') {
-        header("Location: ../public/adminAddArticles.php?error=imagetype");
-        exit();
-    }*/ else {
+    } else {
         $sql = "INSERT INTO news (author, title, category, date_added, content, short_description, picture, picture_source)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
-        $db->insertArticle($sql, $author, $title, $category, $date, $content, $shortDesc, $image, $imgsource);
-        header("Location: ../public/adminAddArticles.php?signup=success");
+        VALUES ('".$author."', '".$title."', '".$category."','".$date."', '".$content."', '".$shortDesc."', '".$image."', '".$imgsource."' ) ;";
+        $db->runQuery($sql);
+        header("Location: ../public/adminAddArticles.php?add=success");
         exit();
     }
 
 } else {
     header("Location: ../public/adminAddArticles.php");
+    exit();
 }
