@@ -88,7 +88,7 @@
                         }
     
                         } else {
-                            echo '<p>Wrong article</p>';
+                            echo '<p>No article here</p>';
                         }
                     ?>
                 </div>
