@@ -1,5 +1,9 @@
 <?php
 
+/*
+Script for managing comment system
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -11,7 +15,7 @@ $db = Database::getInstance();
 //did we get here trough comment button
 if(isset($_POST['comment'])) {
 
-    $content = str_replace(array(':', '-', '/', '*', '<', '<'), '',  $_POST['comment']);
+    $content = str_replace(array(':', '-', '/', '*', '<', '>'), '',  $_POST['comment']);
 
     //error handling and verifying
     if(empty($content)) {
