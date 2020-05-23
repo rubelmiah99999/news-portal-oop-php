@@ -1,5 +1,9 @@
 <?php
 
+/*
+Script with a function that fetches comments from the database for each article
+*/
+
 require_once __DIR__.'/dbhandler.php';
 
 class Comments {
