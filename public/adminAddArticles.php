@@ -49,8 +49,9 @@
                     $categories = $news->getAllCategories();
                 ?>
 
+                <!--form for adding articles-->
                 <h1 class="text-center mt-5">New Article</h1>    
-                <form enctype="multipart/form-data" class="center-divv" name="adminaddForm" action="../includes/adminaddar.inc.php" method="post">
+                <form enctype="multipart/form-data" class="center-divv" name="adminaddForm" action="../includes/adminaddar.inc.php" method="post" onsubmit="return(validate());">
                     <div class="form-group">
                         <label for="title">Title</label>    
                         <input type="text" class="form-control" id="title" name="title" placeholder="Title">
@@ -105,7 +106,35 @@
         </div>
     </div>
     <!--end of wrapper-->
+    
+<script>
+//client side validation
 
+function validate() {
+    
+    if(document.forms["adminaddForm"]["title"].value == "") {
+        document.getElementById("artitle").innerHTML = "Please provide a Title";
+        document.forms["adminaddForm"]["title"].focus();
+        return false;
+    }
+    if(document.forms["adminaddForm"]["author"].value == "") {
+        document.getElementById("arauthor").innerHTML = "Please provide an Author";
+        document.forms["adminaddForm"]["author"].focus();
+        return false;
+    }
+    if(document.forms["adminaddForm"]["content"].value == "") {
+        document.getElementById("arcontent").innerHTML = "Please provide the Content";
+        document.forms["adminaddForm"]["content"].focus();
+        return false;
+    }
+    if(document.forms["adminaddForm"]["shortDesc"].value == "") {
+        document.getElementById("arshortdesc").innerHTML = "Please provide a Short Description";
+        document.forms["adminaddForm"]["shortDesc"].focus();
+        return false;
+    }
+}
+
+</script>
 
 </body>
 </html>
