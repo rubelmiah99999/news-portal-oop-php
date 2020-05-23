@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 
+<!--form for adding comments-->
 <form action="../includes/comments.inc.php" method="post" name="commentForm" onsubmit="emptyComment()">
     <div class="form-group">
         <span>Add a comment</span>
@@ -17,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <div id="comment-div"></div>
 
-
+<!--show existing comments from the database-->
 <div class="comment-div">
     <?php
 
