@@ -49,6 +49,7 @@
                         $article = $newss->getArticle($idArticle);
                         $_SESSION['idArticle'] = $idArticle;
 
+                        //show selected article
                         if(!empty($article)) {
                             foreach($article as $key => $value) {
 
@@ -77,7 +78,7 @@
                         } else {
                             echo '<div class="jumbotron jumbotron-fluid mt-3">';
                                 echo '<div class="container">';
-                                    echo '<h1 class=display-4">Wrong article</h1>';
+                                    echo '<h1 class=display-4">No article here</h1>';
                                 echo '</div>';
                             echo '</div>';
                         }
