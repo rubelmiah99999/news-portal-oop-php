@@ -38,8 +38,7 @@
             <main class="col-9 main">
 
             <h1 class="text-center mt-5">Log In Administrator</h1>
-            <!-- Action points to a spesific page where we'll have only php code
-            things will be checked there and, if everythings ok, user will be logged in-->
+            <!--action points to the script for administrator log in-->
             <form class="center-div" name="loginForm" action="../includes/loginadministrator.inc.php" method="post" onsubmit="return(validate());">
                 <input type="text" name="mailuid" placeholder="E-mail/Username">
                 <p id="adminMailName"></p>
@@ -52,9 +51,9 @@
             <!--end of main-->
         </div>
     </div>
-    <!--end f wrapper-->
+    <!--end of wrapper-->
 
-    <script>
+<script>
 //client side validation
 
 function validate() {
