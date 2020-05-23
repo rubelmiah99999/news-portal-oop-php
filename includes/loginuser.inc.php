@@ -1,4 +1,9 @@
 <?php
+
+/*
+Script for user log in
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -7,12 +12,12 @@ if (session_status() == PHP_SESSION_NONE) {
 if(isset($_POST['login-submit'])) {
     require_once __DIR__.'/../database/dbhandler.php';
 	
-	$mailuid = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mailuid']);
-    $password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
+	$mailuid = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['mailuid']);
+    $password = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['pwd']);
     
     $db = Database::getInstance();
 	
-	If(empty($mailuid) || empty($password))  {
+	if(empty($mailuid) || empty($password))  {
 		header("Location: ../public/loginuser.php?error=emptyfields&mailuid=".$mailuid."&mail=".$email);
 		exit();
 	}
