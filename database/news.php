@@ -1,5 +1,9 @@
 <?php
 
+/*
+Script with functions that fetch data from the database related to article content
+*/
+
 require_once __DIR__.'/dbhandler.php';
 
 class News {
