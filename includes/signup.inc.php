@@ -1,4 +1,9 @@
 <?php
+
+/*
+Script for user sign up
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -6,10 +11,10 @@ if (session_status() == PHP_SESSION_NONE) {
 if(isset($_POST['signup-submit'])) {
     require_once __DIR__.'/../database/dbhandler.php';
 	
-	$username = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['uid']);
-	$email = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['mail']);
-	$password = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd']);
-    $passwordRepeat = str_replace(array(':', '-', '/', '*', '<', '<'), '', $_POST['pwd-repeat']);
+	$username = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['uid']);
+	$email = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['mail']);
+	$password = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['pwd']);
+    $passwordRepeat = str_replace(array(':', '-', '/', '*', '<', '>'), '', $_POST['pwd-repeat']);
     
     $db = Database::getInstance();
 	
@@ -50,7 +55,7 @@ if(isset($_POST['signup-submit'])) {
             $sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?) ;";
 			$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
             $db->insertData($sql,$username, $email, $hashedPwd);
-            header("Location: ../public/loginuser.php?sighup=success");
+            header("Location: ../public/loginuser.php?signup=success");
             exit();
 		}
 	}
