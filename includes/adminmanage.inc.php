@@ -1,5 +1,9 @@
 <?php
 
+/*
+Script that deletes articles from the database once administrator choses to do so
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -8,7 +12,7 @@ require_once __DIR__.'/../database/dbhandler.php';
 $db = Database::getInstance();
 
 if(isset($_POST['deletear'])) {
-    $id = str_replace(array(':', '-', '/', '*', '<', '<'), '',  $_POST['arId']);
+    $id = str_replace(array(':', '-', '/', '*', '<', '>'), '',  $_POST['arId']);
     
     if(empty($id)) {
         header("Location: ../public/adminManageArticles.php?error=emptyid");
