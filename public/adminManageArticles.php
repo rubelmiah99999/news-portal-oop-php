@@ -83,11 +83,10 @@
 
                             <?php
                             //function from database/news.php
-                            //display all news
+                            //display all news in a table
                             $news = $newss->fetchNews($offset, $total_records_per_page);
 
                             if ( $news && !empty($news) ) {
-
                                 foreach ($news as $key => $article) {
 
                                     echo '<tr>';
@@ -147,6 +146,7 @@
                 </div>
                 <!--end of pagination-->
                 
+                <!--form with add and delete buttons-->
                 <hr>
                 <div class="manage-class">
                     <form action="../includes/adminmanage.inc.php" method="post">
@@ -162,6 +162,7 @@
 
                 <script>
                     //get cell value when there is an onclick event
+                    //color effects on the table
                     var table = document.getElementById("articleTable");
                     if (table != null) {
                         if (table.rows[0] != null) {
@@ -202,10 +203,6 @@
     </div>
     <!--end of wrapper-->
 
-    <!--Cookies-->
-    <?php
-        include_once __DIR__.'/cookies.php';
-    ?>
 
 </body>
 </html>
