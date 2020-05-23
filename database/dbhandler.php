@@ -1,5 +1,7 @@
 <?php
-
+/*
+Database handler
+*/
 define('host', 'localhost');
 define('user', 'root');
 define('pass', '');
@@ -159,14 +161,9 @@ class Database {
         }
     }
 
-    public function insertArticle($sql, $param1, $param2, $param3, $param4, $param5, $param6, $param7, $param8) {
-        $stmt = $this->con->stmt_init();
-        if(!$stmt->prepare($sql)) {
-            throw new \Exception( 'Prepare failed' );
-        } else {
-            $stmt->bind_param("ssssssbs", $param1, $param2, $param3, $param4, $param5, $param6, $param7, $param8);
-            $stmt->execute();
-        }
+    public function runQuery($sql) {
+    	$this->con->query($sql);
+    	echo mysqli_error($this->con);
     }
  
 
