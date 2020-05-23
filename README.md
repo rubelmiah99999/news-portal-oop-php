@@ -22,9 +22,7 @@ OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer
 * Users can delete their own comments
 * Administrators can delete any comment
 * Administrators can delete articles
+* Administrators can add a new article
 
 
 I've also created the database and tables, and worked on design.
-#### Functionalities I need to implemet:
-* Administrators can add a new article (image upload and some work on security left)
-
