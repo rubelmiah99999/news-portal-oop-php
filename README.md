@@ -2,7 +2,7 @@
 News portal\
 OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer
 ***
-#### Functionalities I've implemented so far:
+#### Functionalities:
 * Displaying a list of news (with desired information and images), ordered by date descending, on home page
 * Listing all categories in sidebar, and being able to display all news that belong to chosen category
 * Separate log in for users and administrators
