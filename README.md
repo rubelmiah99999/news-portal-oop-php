@@ -1,6 +1,9 @@
 # news-portal-oop-php
 News portal\
-OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer
+OOP PHP, HTML, CSS, JavaScript, Bootstrap, MySQL, WampServer\
+Back-end: OOP PHP and MySQL for the database\
+Front-end: CSS, Bootstrap and JavaScript\
+Server: Apache (using WampServer)
 ***
 #### Functionalities:
 * Displaying a list of news (with desired information and images), ordered by date descending, on home page
